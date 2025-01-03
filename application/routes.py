@@ -6,7 +6,9 @@ from application.models import IncomeExpenses
 
 @app.route("/")
 def index():
-    return render_template('index.html', title = 'index')
+    entries = IncomeExpenses.query.order_by(IncomeExpenses.date.desc()).all()               # Retrieve all entries as a list of objects ordered by date desc
+                                                                                            # Each entry in entries is an IncomeExpense object with attributes that correspond to columns in db table
+    return render_template('index.html', title = 'index', entries = entries)                # Pass the entries information to the html file
 
 @app.route("/add", methods = ["GET", "POST"])
 def add_expense():
