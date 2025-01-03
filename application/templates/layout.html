@@ -22,14 +22,14 @@
             <div class = "col-md-12 p-0">
                 <header class = "mb-4">
                     <nav class = "navbar navbar-expand-lg navbar-dark bg-dark"> 
-                        <a class = "navbar-brand ps-3" href="#" >Datalinks</a>
+                        <a class = "navbar-brand ps-3" href="{{ url_for('index')}}" >Datalinks</a>
                         <button class = "navbar-toggler" type = "button" data-toggle = "collapse" data-target = "navbarNavAltMarkup"
                             aria-controls = "navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span class = "navbar-toggle-icon"></span>
                         </button>
                         <div class = "collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class = "navbar-nav ms-auto me-3">
-                                <a class="nav-item nav-link" href="#">Add</a>
+                                <a class="nav-item nav-link" href="{{ url_for('add_expense')}}">Add</a>
                                 <a class="nav-item nav-link" href="#">Dashboard</a>
                             </div>
                         </div>
@@ -39,6 +39,15 @@
         </div>
         <div class = "row justify-content-center">
             <div class="col-md-10">
+                {% with messages = get_flashed_messages(with_categories = True)%}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{category}}">
+                                {{message}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
                 {% block content %}
                     <h2>This is the layout file</h2>
                 {% endblock %}

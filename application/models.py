@@ -1,7 +1,7 @@
 from application import db
 from datetime import datetime, timezone 
 
-class IncomeExpenses(db.Model):
+class IncomeExpenses(db.Model):                                                             # Inherits db.Model, creates a table in the database db
     id = db.Column(db.Integer, primary_key = True)
     type = db.Column(db.String(30), default = 'income', nullable = False)
     category = db.Column(db.String(30), default= 'rent', nullable = False)

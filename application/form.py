@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, IntegerField, SubmitField
 from wtforms.validators import DataRequired
 
-class UserInputForm(FlaskForm):
+class UserInputForm(FlaskForm):                                             #UserInputForm is the child of FlaskForm. Inheritance
     type = SelectField('Type', validators= [DataRequired()], 
                        choices=[('income', 'income'), 
                                 ('expense', 'expense')
