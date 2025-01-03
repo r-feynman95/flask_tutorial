@@ -18,11 +18,11 @@
                 {% for entry in entries %}                                  <!-- Retrieve data from database -->
                         <tr>
                             <th scope="row">{{loop.index}}</th>             <!-- Special Jinja2 var that represents 1 based index of current for loop interation-->
-                            <td>{{entry.date.strftime("%m-%d-%Y")}}</td>
+                            <td>{{entry.date.strftime("%m-%d-%Y")}}</td>    <!-- entry is passed to html page from routes.py entry is an IncomeExpenses object-->
                             <td>{{entry.type}}</td>
                             <td>{{ entry.category }}</td>
                             <td>{{ entry.amount }}</td>
-                            <td><a href="#" class="btn btn-outline-danger btn-sm">Delete</a></td> <!-- Button used to delete columns-->
+                            <td><a href="{{ url_for('delete', entry_id = entry.id)}}" class="btn btn-outline-danger btn-sm">Delete</a></td>     <!-- Button used to delete columns-->
                         </tr>
                 {% endfor %}
         </tbody>
@@ -30,5 +30,5 @@
     </div>
 {% endblock %}
 
-<!-- {{ url_for('delete', entry_id = entry.id) }} -->
+
 

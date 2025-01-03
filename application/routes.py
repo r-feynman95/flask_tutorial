@@ -25,3 +25,11 @@ def add_expense():
         return redirect(url_for('index'))                               # If form valid, return user to index page
 
     return render_template("add.html", title = 'add', form = form)      # I do not understand how jinja2 is receiving this form...
+
+@app.route("/delete/<int:entry_id>")                                   # Defines dynamic route where entry_id is a variable int: converter ensures that the value extracted is an integer
+def delete(entry_id):
+        entry = IncomeExpenses.query.get_or_404(int(entry_id))          # Attempt to get or instead returns "404 not found" error
+        db.session.delete(entry)                                        # Delete the entry from db
+        db.session.commit()                                             # Commit changes to db
+        flash("Delete was success", 'success')                          # Flash the user success
+        return redirect(url_for('index'))                               # Bring the user back to index page
