@@ -9,4 +9,4 @@ class IncomeExpenses(db.Model):
     amount = db.Column(db.Integer, nullable = False)
 
     def __str__(self):
-        return self.id
+        return self.id     # when an object of this class is printed as a string use the primary key id
