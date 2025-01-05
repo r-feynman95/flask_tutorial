@@ -34,6 +34,11 @@ def delete(entry_id):                                                   # This i
         flash("Delete was success", 'success')                          # Flash the user success
         return redirect(url_for('index'))                               # Bring the user back to index page
 
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html", title = 'dashboard')
+
 @app.route("/upload")
 def upload():
     
