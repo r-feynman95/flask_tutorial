@@ -33,3 +33,8 @@ def delete(entry_id):                                                   # This i
         db.session.commit()                                             # Commit changes to db
         flash("Delete was success", 'success')                          # Flash the user success
         return redirect(url_for('index'))                               # Bring the user back to index page
+
+@app.route("/upload")
+def upload():
+    
+    return redirect(url_for('index'))
