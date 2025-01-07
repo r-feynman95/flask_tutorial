@@ -13,15 +13,15 @@
 
 {% block javascript %}
 <script>
+    let income_vs_expenses = JSON.parse({{ income_vs_expenses | tojson }});
 
-
-let income_vs_expense_chart = new Chart(income_vs_expense, {
+    let income_vs_expense_chart = new Chart(income_vs_expense, {
             type: 'pie',
             data: {
             labels: ['expense', 'income'],
                 datasets: [{
                     label: "Income Vs Expenses",
-                    data: [5000, 7000],
+                    data: income_vs_expenses,
                     backgroundColor: ['#5DA5DA ', '#FAA43A', '#60BD68',
                         '#B276B2', '#E16851', '#FB8267'],
 
@@ -48,9 +48,18 @@ let income_vs_expense_chart = new Chart(income_vs_expense, {
 
                     elements: {
                         hitRadius: 3,
-                    }
-            }
-        });
+                    },
+
+                    scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                min: 0
+                                }
+                                    }
+                                }
+                            }
+                    });
 
   </script>  
 

@@ -2,7 +2,7 @@ from application import app, db
 from flask import render_template, flash, redirect, url_for, get_flashed_messages
 from application.form import UserInputForm
 from application.models import IncomeExpenses
-
+import json
 
 @app.route("/")
 def index():
@@ -37,7 +37,15 @@ def delete(entry_id):                                                   # This i
 
 @app.route("/dashboard")
 def dashboard():
-    return render_template("dashboard.html", title = 'dashboard')
+    income_vs_expense = db.session.query(db.func.sum(IncomeExpenses.amount), IncomeExpenses.type).group_by(IncomeExpenses.type).order_by(IncomeExpenses.type).all()
+
+    income_expense = []
+    for total_amount, _ in income_vs_expense:
+         income_expense.append(total_amount)
+    return render_template("dashboard.html", 
+                           title = 'dashboard',
+                           income_vs_expenses = json.dumps(income_expense)
+                           )
 
 @app.route("/upload")
 def upload():
