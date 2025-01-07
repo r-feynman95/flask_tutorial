@@ -42,6 +42,7 @@ def dashboard():
     income_expense = []
     for total_amount, _ in income_vs_expense:
          income_expense.append(total_amount)
+         
     return render_template("dashboard.html", 
                            title = 'dashboard',
                            income_vs_expenses = json.dumps(income_expense)
