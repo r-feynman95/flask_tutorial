@@ -1,32 +1,41 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 {% block content %}
-<div>
-    <canvas id="myChart" max-width = "100" max-height = "100"></canvas>
+
+<div class="col-xs-10 col-sm-6 col-md-6">
+    <div class="card card-style mb-2">                                      <!-- Simple bootstrap card-->
+        <div class="card-body">
+            <div class="chart-container" style="position: relative;">
+                <canvas id="myChart"></canvas>                    <!-- Contains a canvas as chart.js requires a canvas to be drawn-->
+            </div>
+        </div>
+    </div>
 </div>
-  
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+{% block javascript %}
 <script>
-const ctx = document.getElementById('myChart');
-
-new Chart(ctx, {
-    type: 'bar',
-    data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-    }]
-    },
-    options: {
-    scales: {
-        y: {
-        beginAtZero: true
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
         }
-    }
-    }
-});
-</script>
+      }
+    });
+  </script>  
 
-{% endblock%}
+{% endblock %}
+
+
+{% endblock %}
