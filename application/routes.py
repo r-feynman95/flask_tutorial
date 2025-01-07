@@ -46,18 +46,17 @@ def dashboard():
          income_expense.append(total_amount)
 
     over_time_expenditure = []
-    date_labels = []
+    dates_label = []
+
     for amount, date in dates:
+        dates_label.append(date.strftime("%m-%d-%y"))
         over_time_expenditure.append(amount)
-        print(type(date))
-        print(amount, date)
-        #date_labels.append(date.strftime("%m-%d-%Y"))
 
     return render_template("dashboard.html", 
                            title = 'dashboard',
                            income_vs_expenses = json.dumps(income_expense),
                            over_time_expenditure = json.dumps(over_time_expenditure),
-                           #date_label = json.dumps(date_labels)
+                           dates_label = json.dumps(dates_label)
                            )
 
 @app.route("/upload")
