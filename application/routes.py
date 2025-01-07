@@ -39,13 +39,25 @@ def delete(entry_id):                                                   # This i
 def dashboard():
     income_vs_expense = db.session.query(db.func.sum(IncomeExpenses.amount), IncomeExpenses.type).group_by(IncomeExpenses.type).order_by(IncomeExpenses.type).all()
 
+    dates = db.session.query(db.func.sum(IncomeExpenses.amount), IncomeExpenses.date).group_by(IncomeExpenses.date).order_by(IncomeExpenses.date).all()
+
     income_expense = []
     for total_amount, _ in income_vs_expense:
          income_expense.append(total_amount)
-         
+
+    over_time_expenditure = []
+    date_labels = []
+    for amount, date in dates:
+        over_time_expenditure.append(amount)
+        print(type(date))
+        print(amount, date)
+        #date_labels.append(date.strftime("%m-%d-%Y"))
+
     return render_template("dashboard.html", 
                            title = 'dashboard',
-                           income_vs_expenses = json.dumps(income_expense)
+                           income_vs_expenses = json.dumps(income_expense),
+                           over_time_expenditure = json.dumps(over_time_expenditure),
+                           #date_label = json.dumps(date_labels)
                            )
 
 @app.route("/upload")
