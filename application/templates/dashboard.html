@@ -1,21 +1,23 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-<div class="col-10 col-sm-6 col-md-6">
-    <div class="card card-style mb-2">                                      <!-- Simple bootstrap card-->
-        <div class="card-body">
-            <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
-                <canvas id="income_vs_expense"></canvas>                    <!-- Contains a canvas as chart.js requires a canvas to be drawn-->
+<div class="row"> <!-- Add a row container -->
+    <div class="col-12 col-md-6 col-lg-4"> <!-- Adjusted to use col-md-6 to fit two cards side-by-side on medium screens and larger -->
+        <div class="card card-style mb-2"> <!-- Simple bootstrap card-->
+            <div class="card-body">
+                <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
+                    <canvas id="income_vs_expense"></canvas> <!-- Contains a canvas as chart.js requires a canvas to be drawn-->
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="col-10 col-sm-6 col-md-6">
-    <div class="card card-style mb-2">                                      <!-- Simple bootstrap card-->
-        <div class="card-body">
-            <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
-                <canvas id="expenses_over_time"></canvas>                    <!-- Contains a canvas as chart.js requires a canvas to be drawn-->
+    <div class="col-12 col-md-6 col-lg-4"> <!-- Adjusted to use col-md-6 to fit two cards side-by-side on medium screens and larger -->
+        <div class="card card-style mb-2"> <!-- Simple bootstrap card-->
+            <div class="card-body">
+                <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
+                    <canvas id="expenses_over_time"></canvas> <!-- Contains a canvas as chart.js requires a canvas to be drawn-->
+                </div>
             </div>
         </div>
     </div>
@@ -69,6 +71,7 @@
                             }
                                 }
                             }
+                
                         }
     });
 
